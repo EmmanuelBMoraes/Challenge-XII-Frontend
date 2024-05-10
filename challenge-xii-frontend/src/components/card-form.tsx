@@ -1,13 +1,10 @@
-import React, {
-  FormEvent,
-  ReactEventHandler,
-  useState,
-  useEffect,
-} from "react";
+import React, { FormEvent, useState, useEffect } from "react";
 import styled from "styled-components";
 import { SearchIcon } from "./search-icon";
 import { XIcon } from "./x-component";
 import axios from "axios";
+import Link404 from "next/link";
+import { useRouter } from "next/router";
 
 interface GeoData {
   query: string;
@@ -114,6 +111,7 @@ const IconX = styled.div`
   svg {
     fill: white;
   }
+  cursor: pointer;
 `;
 
 const CardForm = () => {
@@ -132,13 +130,28 @@ const CardForm = () => {
   }, []);
   const [location, setLocation] = useState<string>("");
   const [destination, setDestination] = useState<string>("");
+  const [inputErrorLocation, setInputErrorLocation] = useState<string>("");
+  const [inputErrorDestination, setInputErrorDestination] =
+    useState<string>("");
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
+    //change later
+    if (location != "" && destination != "") {
+      window.location.href = "/not-found";
+    }
+    if (location === "") {
+      setInputErrorLocation("red");
+    } else {
+      setInputErrorLocation("");
+    }
+    if (destination == "") {
+      setInputErrorDestination("red");
+    } else setInputErrorDestination("");
   };
 
   return (
-    <form action="">
+    <form onSubmit={onSubmit}>
       <InteractiveField>
         <DivTitle>Find a Ride now</DivTitle>
         <FieldSet>
@@ -148,15 +161,22 @@ const CardForm = () => {
             placeholder="Current location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
+            style={{ borderColor: inputErrorLocation }}
           />
-          <IconX>
+          <IconX onClick={() => setLocation("")}>
             <XIcon />
           </IconX>
         </FieldSet>
         <FieldSet>
           <Legend>Your pick up</Legend>
-          <Input type="text" placeholder="Your destination" />
-          <IconX>
+          <Input
+            type="text"
+            placeholder="Your destination"
+            value={destination}
+            onChange={(e) => setDestination(e.target.value)}
+            style={{ borderColor: inputErrorDestination }}
+          />
+          <IconX onClick={() => setDestination("")}>
             <XIcon />
           </IconX>
         </FieldSet>
@@ -168,7 +188,7 @@ const CardForm = () => {
             </ButtonFind>
           </div>
           <div>
-            <Link href="/not-found">MORE OPTIONS</Link>
+            <Link>MORE OPTIONS</Link>
           </div>
         </ButtonField>
       </InteractiveField>
