@@ -1,7 +1,7 @@
-import React from "react";
 import styled from "styled-components";
 import { SearchIcon } from "./search-icon";
 import { XIcon } from "./x-component";
+import GetGeolocation from "./getGeolocation";
 
 const Card = styled.div`
   display: flex;
@@ -118,12 +118,17 @@ const IconX = styled.div`
     fill: white;
   }
 `;
+
 export default function CardSection01() {
+  const local = GetGeolocation();
+
+  const userLocal: string = `${local[0] || ""}, ${local[1] || ""}`;
+
   return (
     <Card>
       <div>
         <div>
-          <InfoH2> NEED A RIDE?</InfoH2>
+          <InfoH2> NEED A RIDE? </InfoH2>
         </div>
         <div>
           <InfoH1>
@@ -137,7 +142,11 @@ export default function CardSection01() {
           <DivTitle>Find a Ride now</DivTitle>
           <FieldSet>
             <Legend>Your pick up</Legend>
-            <Input type="text" placeholder="Current location" />
+            <Input
+              type="text"
+              placeholder="Current location"
+              defaultValue={userLocal.length > 3 ? userLocal : ""}
+            />
             <IconX>
               <XIcon />
             </IconX>
