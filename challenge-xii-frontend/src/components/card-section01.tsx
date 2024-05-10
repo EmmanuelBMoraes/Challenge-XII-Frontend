@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { SearchIcon } from "./search-icon";
 import { XIcon } from "./x-component";
 import GetGeolocation from "./getGeolocation";
+import LinkPages from "next/link";
 
 const Card = styled.div`
   display: flex;
@@ -166,7 +167,7 @@ export default function CardSection01() {
               </ButtonFind>
             </div>
             <div>
-              <Link href="">MORE OPTIONS</Link>
+              <Link href="/not-found">MORE OPTIONS</Link>
             </div>
           </ButtonField>
         </InteractiveField>
