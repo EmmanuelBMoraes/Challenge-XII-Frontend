@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { SearchIcon } from "./search-icon";
 import { XIcon } from "./x-component";
 import axios from "axios";
-import Link404 from "next/link";
-import { useRouter } from "next/router";
 
 interface GeoData {
   query: string;

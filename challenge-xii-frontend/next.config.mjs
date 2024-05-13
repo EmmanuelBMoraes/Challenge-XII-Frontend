@@ -5,7 +5,12 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ["img.freepik.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: process.env.BUCKET_URL,
+      },
+    ],
   },
 };
 
