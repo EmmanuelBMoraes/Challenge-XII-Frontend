@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import CarTypes from "./carTypes";
-import { useState } from "react";
+import { useState, FormEvent } from "react";
+import axios from "axios";
 
 const DivForm = styled.div`
   display: flex;
@@ -142,6 +143,19 @@ const CarCard = styled.div`
   color: white;
   cursor: pointer;
 `;
+
+const SubmitButton = styled.button`
+  width: 200px;
+  height: 56px;
+  color: white;
+  background-color: #fba403;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  margin-top: 24px;
+  cursor: pointer;
+  font-weight: 500;
+`;
 export default function FormS3() {
   const [selected, setSelected] = useState<string[]>([
     "white",
@@ -174,8 +188,12 @@ export default function FormS3() {
     setSelected(selectedCar);
   };
 
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <DivForm>
         <DivName>
           <InputName placeholder="First Name" />
@@ -226,6 +244,7 @@ export default function FormS3() {
             </CarCard>
           </DivCarTypes>
         </DivSelectCar>
+        <SubmitButton type="submit">SUBMIT</SubmitButton>
       </DivForm>
     </form>
   );
