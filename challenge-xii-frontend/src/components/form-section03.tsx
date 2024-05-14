@@ -124,8 +124,23 @@ const SelectCarTitle = styled.p`
 
 const DivCarTypes = styled.div`
   display: flex;
+  gap: 12px;
+  margin-top: 16px;
 `;
 
+const CarCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 147px;
+  height: 80px;
+  border: 1px solid white;
+  border-radius: 4px;
+  gap: 11px;
+  color: white;
+  cursor: pointer;
+`;
 export default function FormS3() {
   return (
     <form>
@@ -148,6 +163,25 @@ export default function FormS3() {
         </DivOwnCar>
         <DivSelectCar>
           <SelectCarTitle>Select your car type</SelectCarTitle>
+          <DivCarTypes>
+            <CarCard>
+              {CarTypes()[0]}
+              <p>Sedan</p>
+            </CarCard>
+            <CarCard>
+              {CarTypes()[1]}
+              <p>SUV/Van</p>
+            </CarCard>
+            <CarCard>
+              {CarTypes()[2]}
+              <p>Semi Luxury</p>
+            </CarCard>
+            <CarCard>
+              <input type="checkbox" />
+              {CarTypes()[3]}
+              <p>Luxury Car</p>
+            </CarCard>
+          </DivCarTypes>
         </DivSelectCar>
       </DivForm>
     </form>
