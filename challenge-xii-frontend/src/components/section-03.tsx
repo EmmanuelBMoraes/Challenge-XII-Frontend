@@ -9,6 +9,7 @@ const Section = styled.div`
   background-color: #282828;
   padding: 30px;
   border-radius: 10px;
+  margin-bottom: 85px;
 `;
 
 const TopSection = styled.div`

@@ -164,6 +164,10 @@ export default function FormS3() {
     "white",
   ]);
   const [carType, setCarType] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [ownCar, setOwnCar] = useState<boolean>(false);
 
   const handleClick = (car: string) => {
     setCarType(car);
@@ -190,16 +194,38 @@ export default function FormS3() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    const p = await axios.post("http://localhost:3001/drivers", {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      country: "Default",
+      city: "Default",
+      ownCar: ownCar,
+      carType: carType,
+    });
+    console.log(e);
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <DivForm>
         <DivName>
-          <InputName placeholder="First Name" />
-          <InputName placeholder="Last Name" />
+          <InputName
+            placeholder="First Name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <InputName
+            placeholder="Last Name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
         </DivName>
-        <Input placeholder="E-mail Adress" />
+        <Input
+          placeholder="E-mail Adress"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <Legend>Country</Legend>
         <Input placeholder="Country" />
         <Input placeholder="City" />
@@ -207,7 +233,11 @@ export default function FormS3() {
         <DivOwnCar>
           <DescriptionP>I drive my own car</DescriptionP>
           <div>
-            <InputChkBox type="checkbox" />
+            <InputChkBox
+              type="checkbox"
+              checked={ownCar}
+              onChange={(e) => setOwnCar(e.target.checked)}
+            />
             <ToggleButton></ToggleButton>
           </div>
         </DivOwnCar>
