@@ -58,6 +58,7 @@ const Input = styled.input`
   outline: none;
   border: 1px solid white;
   border-radius: 4px;
+  caret-color: #fba403;
   &:focus {
     border-color: #fba403;
   }
