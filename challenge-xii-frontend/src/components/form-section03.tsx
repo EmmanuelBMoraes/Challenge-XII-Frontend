@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import CarTypes from "./carTypes";
+import { useState } from "react";
 
 const DivForm = styled.div`
   display: flex;
@@ -142,6 +143,37 @@ const CarCard = styled.div`
   cursor: pointer;
 `;
 export default function FormS3() {
+  const [selected, setSelected] = useState<string[]>([
+    "white",
+    "white",
+    "white",
+    "white",
+  ]);
+  const [carType, setCarType] = useState<string>("");
+
+  const handleClick = (car: string) => {
+    setCarType(car);
+    const selectedCar: string[] = ["white", "white", "white", "white"];
+    switch (car) {
+      case "Sedan":
+        selectedCar[0] = "#fba403";
+        break;
+      case "SUV/Van":
+        selectedCar[1] = "#fba403";
+        break;
+      case "Semi Luxury":
+        selectedCar[2] = "#fba403";
+        break;
+      case "Luxury":
+        selectedCar[3] = "#fba403";
+        break;
+
+      default:
+        break;
+    }
+    setSelected(selectedCar);
+  };
+
   return (
     <form>
       <DivForm>
@@ -164,20 +196,31 @@ export default function FormS3() {
         <DivSelectCar>
           <SelectCarTitle>Select your car type</SelectCarTitle>
           <DivCarTypes>
-            <CarCard>
+            <CarCard
+              style={{ borderColor: selected[0] }}
+              onClick={() => handleClick("Sedan")}
+            >
               {CarTypes()[0]}
               <p>Sedan</p>
             </CarCard>
-            <CarCard>
+            <CarCard
+              style={{ borderColor: selected[1] }}
+              onClick={() => handleClick("SUV/Van")}
+            >
               {CarTypes()[1]}
               <p>SUV/Van</p>
             </CarCard>
-            <CarCard>
+            <CarCard
+              style={{ borderColor: selected[2] }}
+              onClick={() => handleClick("Semi Luxury")}
+            >
               {CarTypes()[2]}
               <p>Semi Luxury</p>
             </CarCard>
-            <CarCard>
-              <input type="checkbox" />
+            <CarCard
+              style={{ borderColor: selected[3] }}
+              onClick={() => handleClick("Luxury")}
+            >
               {CarTypes()[3]}
               <p>Luxury Car</p>
             </CarCard>
