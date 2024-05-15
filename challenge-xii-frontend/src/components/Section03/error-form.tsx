@@ -1,19 +1,9 @@
 import Image from "next/image";
-import styled from "styled-components";
+import { ErrorDiv, MessageError } from "./styles";
 
 type MessageProp = {
   message: string;
 };
-
-const ErrorDiv = styled.div`
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  margin-top: 5px;
-`;
-const MessageError = styled.p`
-  color: red;
-`;
 
 export default function ErrorForm({ message }: MessageProp) {
   return (
