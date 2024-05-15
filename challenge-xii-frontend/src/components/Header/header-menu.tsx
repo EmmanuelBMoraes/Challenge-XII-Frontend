@@ -1,23 +1,7 @@
 "use client";
-import styled from "styled-components";
-import { theme } from "@/app/theme";
-
+import { Link, ListItem, List } from "./styles";
 interface HeaderMenuProps {}
 
-const List = styled.ul`
-  display: flex;
-  color: ${theme.colors.white};
-  list-style-type: none;
-`;
-
-const ListItem = styled.li`
-  padding: 30px;
-`;
-
-const Link = styled.a`
-  text-decoration: none;
-  color: ${theme.colors.white};
-`;
 export default function HeaderMenu(props: HeaderMenuProps) {
   return (
     <List>

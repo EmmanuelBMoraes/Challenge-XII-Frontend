@@ -1,19 +1,13 @@
 "use client";
-
-import Image from "next/image";
-import styled from "styled-components";
 import CardSection01 from "./card-section01";
+import { Section } from "./styles";
+import styled from "styled-components";
+import Image from "next/image";
 
 interface Section01Props {}
 
 const imgUrl =
   "https://" + process.env.NEXT_PUBLIC_BUCKET_URL + "/cards/Hero-image.png";
-
-const Section = styled.div`
-  display: flex;
-  padding: 74px 89px;
-  gap: 42px;
-`;
 
 const Teste = styled(Image)`
   border-radius: 10px;
