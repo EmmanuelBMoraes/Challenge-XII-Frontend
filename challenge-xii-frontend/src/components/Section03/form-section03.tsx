@@ -16,15 +16,18 @@ import {
   DivInputs,
 } from "./styles";
 import CarTypes from "./carTypes";
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import axios, { AxiosError } from "axios";
 import { theme } from "@/app/theme";
 import ErrorForm from "./error-form";
+import SelectInput, { Option } from "./select";
 type MessageProp = {
   message: string;
 };
 
 export default function FormS3() {
+  const [optionsCountry, setOptionsCountry] = useState<Option[]>([]);
+  const [optionsCity, setOptionsCity] = useState<Option[]>([]);
   const [selected, setSelected] = useState<string[]>([
     "white",
     "white",
@@ -37,7 +40,64 @@ export default function FormS3() {
   const [email, setEmail] = useState<string>("");
   const [ownCar, setOwnCar] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [country, setCountry] = useState<string>("");
+  const [city, setCity] = useState<string>("");
+  const [firstLoad, setFirstLoad] = useState<boolean>(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const resCountry = await axios.get(
+          "https://countriesnow.space/api/v0.1/countries/capital"
+        );
+        const optionsDataCountry = resCountry.data.data.map((country: any) => ({
+          id: country.name,
+          displayName: country.name,
+        }));
 
+        setOptionsCountry(optionsDataCountry);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (country != "") {
+      const fetchData = async () => {
+        try {
+          const resCity = await axios.post(
+            "https://countriesnow.space/api/v0.1/countries/cities",
+            {
+              country: country,
+            }
+          );
+          const optionsDataCity = await resCity.data.data.map(
+            (city: string) => ({
+              id: city,
+              displayName: city,
+            })
+          );
+
+          setOptionsCity(optionsDataCity);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      fetchData();
+    }
+  }, [country]);
+
+  const handleSelectChangeCountry = (optionId: string) => {
+    if (firstLoad) {
+      setFirstLoad(false);
+    }
+    setCountry(optionId);
+  };
+  const handleSelectChangeCity = (optionId: string) => {
+    setCity(optionId);
+  };
   const handleClick = (car: string) => {
     setCarType(car);
     const selectedCar: string[] = ["white", "white", "white", "white"];
@@ -63,14 +123,15 @@ export default function FormS3() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
+    console.log(country);
+    console.log(city);
     try {
       const postDriver = await axios.post("http://localhost:3001/drivers", {
         firstName: firstName,
         lastName: lastName,
         email: email,
-        country: "Default",
-        city: "Default",
+        country: country,
+        city: city,
         ownCar: ownCar,
         carType: carType,
       });
@@ -120,9 +181,22 @@ export default function FormS3() {
         </DivInputs>
         <DivInputs>
           <Legend>Country</Legend>
-          <Input placeholder="Country" />
+          <SelectInput
+            id="Country"
+            options={optionsCountry}
+            first={firstLoad}
+            onChange={handleSelectChangeCountry}
+          />
+          {errorMessage.includes("country") && (
+            <ErrorForm message="Invalid country" />
+          )}
         </DivInputs>
-        <Input placeholder="City" />
+        <SelectInput
+          id="City"
+          options={optionsCity}
+          onChange={handleSelectChangeCity}
+        />
+        {errorMessage.includes("city") && <ErrorForm message="Invalid city" />}
         <Input placeholder="Referal Code" />
         <DivOwnCar>
           <DescriptionPS3>I drive my own car</DescriptionPS3>
