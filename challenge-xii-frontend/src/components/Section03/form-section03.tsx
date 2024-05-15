@@ -2,6 +2,7 @@ import styled from "styled-components";
 import CarTypes from "./carTypes";
 import { useState, FormEvent } from "react";
 import axios, { AxiosError } from "axios";
+import { theme } from "@/app/theme";
 import ErrorForm from "./error-form";
 type MessageProp = {
   message: string;
@@ -18,14 +19,14 @@ const InputName = styled.input`
   height: 60px;
   padding: 12px 17px;
   margin-top: 24px;
-  color: white;
+  color: ${theme.colors.white};
   background-color: transparent;
   outline: none;
-  border: 1px solid white;
+  border: 1px solid ${theme.colors.white};
   border-radius: 4px;
-  caret-color: #fba403;
+  caret-color: ${theme.colors.golden};
   &:focus {
-    border-color: #fba403;
+    border-color: ${theme.colors.golden};
   }
 `;
 
@@ -33,14 +34,14 @@ const Input = styled.input`
   height: 60px;
   padding: 12px 17px;
   margin-top: 24px;
-  color: white;
+  color: ${theme.colors.white};
   background-color: transparent;
   outline: none;
-  border: 1px solid white;
+  border: 1px solid ${theme.colors.white};
   border-radius: 4px;
-  caret-color: #fba403;
+  caret-color: ${theme.colors.golden};
   &:focus {
-    border-color: #fba403;
+    border-color: ${theme.colors.golden};
   }
 `;
 
@@ -60,7 +61,7 @@ const Legend = styled.legend`
   position: absolute;
   margin-left: 16px;
   font-size: 12px;
-  color: white;
+  color: ${theme.colors.white};
   top: 17px;
   z-index: 100;
   background-color: #2c2c2c;
@@ -69,14 +70,14 @@ const Legend = styled.legend`
 `;
 
 const DescriptionP = styled.p`
-  color: white;
+  color: ${theme.colors.white};
   font-size: 16px;
 `;
 
 const InputChkBox = styled.input`
   &:checked + label::after {
     left: 20px;
-    background-color: #fba403;
+    background-color: ${theme.colors.golden};
     transition: all 0.4s;
   }
   &:checked + label {
@@ -107,13 +108,13 @@ const ToggleButton = styled.label`
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: white;
+    background-color: ${theme.colors.white};
     top: -3px;
     left: -2px;
     transition: all 0.4s;
 
     &:before {
-      background-color: white;
+      background-color: ${theme.colors.white};
     }
   }
 `;
@@ -125,7 +126,7 @@ const DivSelectCar = styled.div`
 const SelectCarTitle = styled.p`
   font-weight: 500;
   font-size: 26;
-  color: #fba403;
+  color: ${theme.colors.golden};
 `;
 
 const DivCarTypes = styled.div`
@@ -141,18 +142,18 @@ const CarCard = styled.div`
   justify-content: center;
   width: 147px;
   height: 80px;
-  border: 1px solid white;
+  border: 1px solid ${theme.colors.white};
   border-radius: 4px;
   gap: 11px;
-  color: white;
+  color: ${theme.colors.white};
   cursor: pointer;
 `;
 
 const SubmitButton = styled.button`
   width: 200px;
   height: 56px;
-  color: white;
-  background-color: #fba403;
+  color: ${theme.colors.white};
+  background-color: ${theme.colors.golden};
   outline: none;
   border: none;
   border-radius: 6px;
@@ -186,16 +187,16 @@ export default function FormS3() {
     const selectedCar: string[] = ["white", "white", "white", "white"];
     switch (car) {
       case "Sedan":
-        selectedCar[0] = "#fba403";
+        selectedCar[0] = `${theme.colors.golden}`;
         break;
       case "SUV/Van":
-        selectedCar[1] = "#fba403";
+        selectedCar[1] = `${theme.colors.golden}`;
         break;
       case "Semi Luxury":
-        selectedCar[2] = "#fba403";
+        selectedCar[2] = `${theme.colors.golden}`;
         break;
       case "Luxury":
-        selectedCar[3] = "#fba403";
+        selectedCar[3] = `${theme.colors.golden}`;
         break;
 
       default:

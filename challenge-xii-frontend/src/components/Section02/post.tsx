@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
+import { theme } from "@/app/theme";
 
 interface Post {
   title: string;
@@ -17,12 +18,12 @@ const Card = styled.div`
 
 const Title = styled.p`
   font-weight: 500;
-  color: white;
+  color: ${theme.colors.white};
   font-size: 16px;
 `;
 
 const Description = styled.p`
-  color: #b3b3b3;
+  color: ${theme.colors.text_grey};
   font-size: 16px;
   margin-top: 6px;
 `;
@@ -30,12 +31,12 @@ const Description = styled.p`
 const LearM = styled.div`
   text-align: end;
   padding-top: 11px;
-  color: #fba403;
+  color: ${theme.colors.golden};
 `;
 
 const DescDiv = styled.div`
   padding: 15px 14px;
-  background-color: #383838;
+  background-color: ${theme.colors.post_background};
   border-radius: 0px 0px 4px 4px;
 `;
 

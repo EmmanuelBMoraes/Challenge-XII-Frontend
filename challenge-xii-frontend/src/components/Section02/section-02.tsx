@@ -1,7 +1,6 @@
 "use client";
 import styled from "styled-components";
-
-import CardSection01 from "../Section01/card-section01";
+import { theme } from "@/app/theme";
 import Posts from "./posts";
 
 interface Section02Props {}
@@ -15,7 +14,7 @@ const Section = styled.div`
 
 const Paragraph = styled.p`
   font-size: 26px;
-  color: #fba403;
+  color: ${theme.colors.golden};
   padding-bottom: 8px;
 `;
 
@@ -24,7 +23,7 @@ const Division = styled.div`
 `;
 
 const H2 = styled.h2`
-  color: white;
+  color: ${theme.colors.white};
   font-size: 42px;
 `;
 

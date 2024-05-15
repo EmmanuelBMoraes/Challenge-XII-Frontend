@@ -1,11 +1,12 @@
 "use client";
 import styled from "styled-components";
+import { theme } from "@/app/theme";
 
 interface HeaderMenuProps {}
 
 const List = styled.ul`
   display: flex;
-  color: white;
+  color: ${theme.colors.white};
   list-style-type: none;
 `;
 
@@ -15,7 +16,7 @@ const ListItem = styled.li`
 
 const Link = styled.a`
   text-decoration: none;
-  color: white;
+  color: ${theme.colors.white};
 `;
 export default function HeaderMenu(props: HeaderMenuProps) {
   return (

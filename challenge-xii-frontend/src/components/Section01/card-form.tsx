@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { SearchIcon } from "./search-icon";
 import { XIcon } from "./x-component";
 import axios from "axios";
+import { theme } from "@/app/theme";
 
 interface GeoData {
   query: string;
@@ -36,7 +37,7 @@ const FieldSet = styled.div`
   padding-bottom: 12px;
   position: relative;
   &:focus-within svg {
-    fill: #fba403;
+    fill: ${theme.colors.golden};
   }
   > input::placeholder-shown + div {
     display: none;
@@ -46,21 +47,21 @@ const FieldSet = styled.div`
 const DivTitle = styled.div`
   font-size: 24px;
   font-weight: bold;
-  color: white;
+  color: ${theme.colors.white};
 `;
 
 const Input = styled.input`
   width: 544px;
   height: 60px;
   padding: 12px 17px;
-  color: white;
+  color: ${theme.colors.white};
   background-color: transparent;
   outline: none;
-  border: 1px solid white;
+  border: 1px solid ${theme.colors.white};
   border-radius: 4px;
-  caret-color: #fba403;
+  caret-color: ${theme.colors.golden};
   &:focus {
-    border-color: #fba403;
+    border-color: ${theme.colors.golden};
   }
   &:placeholder-shown + div {
     display: none;
@@ -71,7 +72,7 @@ const Legend = styled.legend`
   position: absolute;
   margin-left: 16px;
   font-size: 12px;
-  color: white;
+  color: ${theme.colors.white};
   top: -7px;
   z-index: 100;
   background-color: #2c2c2c;
@@ -89,18 +90,18 @@ const ButtonField = styled.div`
 const ButtonFind = styled.button`
   width: 215px;
   height: 56px;
-  background-color: #fba403;
+  background-color: ${theme.colors.golden};
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  color: white;
+  color: ${theme.colors.white};
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 const Link = styled.a`
   text-decoration: none;
-  color: #fba403;
+  color: ${theme.colors.golden};
 `;
 
 const IconX = styled.div`
@@ -108,7 +109,7 @@ const IconX = styled.div`
   top: 21.5px;
   right: 15px;
   svg {
-    fill: white;
+    fill: ${theme.colors.white};
   }
   cursor: pointer;
 `;

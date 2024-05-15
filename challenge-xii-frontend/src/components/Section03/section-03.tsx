@@ -2,11 +2,12 @@
 import styled from "styled-components";
 import PopupSvg from "./popup-svg";
 import FormS3 from "./form-section03";
+import { theme } from "@/app/theme";
 
 const Section = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #282828;
+  background-color: ${theme.colors.component_background};
   padding: 30px;
   border-radius: 10px;
   margin-bottom: 85px;
@@ -20,11 +21,11 @@ const TopSection = styled.div`
 `;
 
 const DescriptionH2 = styled.h2`
-  color: #fba403;
+  color: ${theme.colors.golden};
   font-size: 27px;
 `;
 const DescriptionP = styled.p`
-  color: white;
+  color: ${theme.colors.white};
   font-size: 16px;
   margin-top: 6px;
 `;

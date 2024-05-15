@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import CardForm from "./card-form";
+import { theme } from "@/app/theme";
 
 const Card = styled.div`
   display: flex;
@@ -9,23 +10,23 @@ const Card = styled.div`
 `;
 
 const InfoH2 = styled.h2`
-  color: white;
+  color: ${theme.colors.white};
   font-size: 26px;
   font-weight: 400;
 `;
 const InfoH1 = styled.h2`
-  color: white;
+  color: ${theme.colors.white};
   font-size: 50px;
 `;
 
 const MediumItalic = styled.span`
   font-weight: 500;
   font-style: italic;
-  color: #fba403;
+  color: ${theme.colors.golden};
 `;
 
 const Ride = styled.span`
-  color: #fba403;
+  color: ${theme.colors.golden};
 `;
 
 export default function CardSection01() {
