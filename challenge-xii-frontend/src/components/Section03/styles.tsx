@@ -18,6 +18,7 @@ const Section = styled.div`
   padding: 30px;
   border-radius: 10px;
   margin-bottom: 85px;
+  position: relative;
 `;
 
 const TopSection = styled.div`

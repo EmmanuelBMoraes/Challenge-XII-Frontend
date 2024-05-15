@@ -21,6 +21,7 @@ import axios, { AxiosError } from "axios";
 import { theme } from "@/app/theme";
 import ErrorForm from "./error-form";
 import SelectInput, { Option } from "./select";
+import Sucssess from "./sucess";
 type MessageProp = {
   message: string;
 };
@@ -43,6 +44,7 @@ export default function FormS3() {
   const [country, setCountry] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [firstLoad, setFirstLoad] = useState<boolean>(true);
+  const [sucess, setSucsses] = useState<boolean>(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -123,8 +125,6 @@ export default function FormS3() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log(country);
-    console.log(city);
     try {
       const postDriver = await axios.post("http://localhost:3001/drivers", {
         firstName: firstName,
@@ -135,118 +135,124 @@ export default function FormS3() {
         ownCar: ownCar,
         carType: carType,
       });
+      setSucsses(true);
       setErrorMessage("");
     } catch (error) {
       console.log(error);
       const axiosError = error as AxiosError;
       const message: string = axiosError.request.response;
       setErrorMessage(message);
+      setSucsses(true);
     }
   };
-
   return (
     <form onSubmit={handleSubmit}>
-      <DivForm>
-        <DivName>
-          <div>
-            <InputName
-              placeholder="First Name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+      {sucess && <Sucssess />}
+      {!sucess && (
+        <DivForm>
+          <DivName>
+            <div>
+              <InputName
+                placeholder="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              {errorMessage.includes("firstName") && (
+                <ErrorForm message="Invalid First Name" />
+              )}
+            </div>
+            <div>
+              <InputName
+                placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+              {errorMessage.includes("lastName") && (
+                <ErrorForm message="Invalid Last Name" />
+              )}
+            </div>
+          </DivName>
+          <DivInputs>
+            <Input
+              placeholder="E-mail Adress"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
-            {errorMessage.includes("firstName") && (
-              <ErrorForm message="Invalid First Name" />
+            {errorMessage.includes("email") && (
+              <ErrorForm message="Invalid e-mail" />
             )}
-          </div>
-          <div>
-            <InputName
-              placeholder="Last Name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+          </DivInputs>
+          <DivInputs>
+            <Legend>Country</Legend>
+            <SelectInput
+              id="Country"
+              options={optionsCountry}
+              first={firstLoad}
+              onChange={handleSelectChangeCountry}
             />
-            {errorMessage.includes("lastName") && (
-              <ErrorForm message="Invalid Last Name" />
+            {errorMessage.includes("country") && (
+              <ErrorForm message="Invalid country" />
             )}
-          </div>
-        </DivName>
-        <DivInputs>
-          <Input
-            placeholder="E-mail Adress"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          {errorMessage.includes("email") && (
-            <ErrorForm message="Invalid e-mail" />
-          )}
-        </DivInputs>
-        <DivInputs>
-          <Legend>Country</Legend>
+          </DivInputs>
           <SelectInput
-            id="Country"
-            options={optionsCountry}
-            first={firstLoad}
-            onChange={handleSelectChangeCountry}
+            id="City"
+            options={optionsCity}
+            onChange={handleSelectChangeCity}
           />
-          {errorMessage.includes("country") && (
-            <ErrorForm message="Invalid country" />
+          {errorMessage.includes("city") && (
+            <ErrorForm message="Invalid city" />
           )}
-        </DivInputs>
-        <SelectInput
-          id="City"
-          options={optionsCity}
-          onChange={handleSelectChangeCity}
-        />
-        {errorMessage.includes("city") && <ErrorForm message="Invalid city" />}
-        <Input placeholder="Referal Code" />
-        <DivOwnCar>
-          <DescriptionPS3>I drive my own car</DescriptionPS3>
-          <div>
-            <InputChkBox
-              type="checkbox"
-              checked={ownCar}
-              onChange={(e) => setOwnCar(e.target.checked)}
-            />
-            <ToggleButton></ToggleButton>
-          </div>
-        </DivOwnCar>
-        <DivSelectCar>
-          <SelectCarTitle>Select your car type</SelectCarTitle>
-          <DivCarTypes>
-            <CarCard
-              style={{ borderColor: selected[0] }}
-              onClick={() => handleClick("Sedan")}
-            >
-              {CarTypes()[0]}
-              <p>Sedan</p>
-            </CarCard>
-            <CarCard
-              style={{ borderColor: selected[1] }}
-              onClick={() => handleClick("SUV/Van")}
-            >
-              {CarTypes()[1]}
-              <p>SUV/Van</p>
-            </CarCard>
-            <CarCard
-              style={{ borderColor: selected[2] }}
-              onClick={() => handleClick("Semi Luxury")}
-            >
-              {CarTypes()[2]}
-              <p>Semi Luxury</p>
-            </CarCard>
-            <CarCard
-              style={{ borderColor: selected[3] }}
-              onClick={() => handleClick("Luxury")}
-            >
-              {CarTypes()[3]}
-              <p>Luxury Car</p>
-            </CarCard>
-          </DivCarTypes>
-          {errorMessage.includes("carType") && (
-            <ErrorForm message="Select a vehicle type" />
-          )}
-        </DivSelectCar>
-        <SubmitButton type="submit">SUBMIT</SubmitButton>
-      </DivForm>
+          <Input placeholder="Referal Code" />
+          <DivOwnCar>
+            <DescriptionPS3>I drive my own car</DescriptionPS3>
+            <div>
+              <InputChkBox
+                type="checkbox"
+                checked={ownCar}
+                onChange={(e) => setOwnCar(e.target.checked)}
+              />
+              <ToggleButton></ToggleButton>
+            </div>
+          </DivOwnCar>
+          <DivSelectCar>
+            <SelectCarTitle>Select your car type</SelectCarTitle>
+            <DivCarTypes>
+              <CarCard
+                style={{ borderColor: selected[0] }}
+                onClick={() => handleClick("Sedan")}
+              >
+                {CarTypes()[0]}
+                <p>Sedan</p>
+              </CarCard>
+              <CarCard
+                style={{ borderColor: selected[1] }}
+                onClick={() => handleClick("SUV/Van")}
+              >
+                {CarTypes()[1]}
+                <p>SUV/Van</p>
+              </CarCard>
+              <CarCard
+                style={{ borderColor: selected[2] }}
+                onClick={() => handleClick("Semi Luxury")}
+              >
+                {CarTypes()[2]}
+                <p>Semi Luxury</p>
+              </CarCard>
+              <CarCard
+                style={{ borderColor: selected[3] }}
+                onClick={() => handleClick("Luxury")}
+              >
+                {CarTypes()[3]}
+                <p>Luxury Car</p>
+              </CarCard>
+            </DivCarTypes>
+            {errorMessage.includes("carType") && (
+              <ErrorForm message="Select a vehicle type" />
+            )}
+          </DivSelectCar>
+          <SubmitButton type="submit">SUBMIT</SubmitButton>
+        </DivForm>
+      )}
     </form>
   );
 }
