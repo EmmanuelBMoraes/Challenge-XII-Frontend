@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import CarTypes from "./carTypes";
 import { useState, FormEvent } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import ErrorForm from "./error-form";
+type MessageProp = {
+  message: string;
+};
 
 const DivForm = styled.div`
   display: flex;
@@ -57,7 +61,7 @@ const Legend = styled.legend`
   margin-left: 16px;
   font-size: 12px;
   color: white;
-  top: 184px;
+  top: 17px;
   z-index: 100;
   background-color: #2c2c2c;
   padding-left: 3px;
@@ -156,6 +160,13 @@ const SubmitButton = styled.button`
   cursor: pointer;
   font-weight: 500;
 `;
+
+const DivInputs = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+`;
+
 export default function FormS3() {
   const [selected, setSelected] = useState<string[]>([
     "white",
@@ -168,6 +179,7 @@ export default function FormS3() {
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [ownCar, setOwnCar] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const handleClick = (car: string) => {
     setCarType(car);
@@ -194,40 +206,64 @@ export default function FormS3() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const p = await axios.post("http://localhost:3001/drivers", {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      country: "Default",
-      city: "Default",
-      ownCar: ownCar,
-      carType: carType,
-    });
-    console.log(e);
+
+    try {
+      const postDriver = await axios.post("http://localhost:3001/drivers", {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        country: "Default",
+        city: "Default",
+        ownCar: ownCar,
+        carType: carType,
+      });
+      console.log(e);
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      const message: string = axiosError.request.response;
+      setErrorMessage(message);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <DivForm>
         <DivName>
-          <InputName
-            placeholder="First Name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-          <InputName
-            placeholder="Last Name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
+          <div>
+            <InputName
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+            {errorMessage.includes("firstName") && (
+              <ErrorForm message="Invalid First Name" />
+            )}
+          </div>
+          <div>
+            <InputName
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+            {errorMessage.includes("lastName") && (
+              <ErrorForm message="Invalid Last Name" />
+            )}
+          </div>
         </DivName>
-        <Input
-          placeholder="E-mail Adress"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <Legend>Country</Legend>
-        <Input placeholder="Country" />
+        <DivInputs>
+          <Input
+            placeholder="E-mail Adress"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {errorMessage.includes("email") && (
+            <ErrorForm message="Invalid e-mail" />
+          )}
+        </DivInputs>
+        <DivInputs>
+          <Legend>Country</Legend>
+          <Input placeholder="Country" />
+        </DivInputs>
         <Input placeholder="City" />
         <Input placeholder="Referal Code" />
         <DivOwnCar>
@@ -273,6 +309,9 @@ export default function FormS3() {
               <p>Luxury Car</p>
             </CarCard>
           </DivCarTypes>
+          {errorMessage.includes("carType") && (
+            <ErrorForm message="Select a vehicle type" />
+          )}
         </DivSelectCar>
         <SubmitButton type="submit">SUBMIT</SubmitButton>
       </DivForm>
