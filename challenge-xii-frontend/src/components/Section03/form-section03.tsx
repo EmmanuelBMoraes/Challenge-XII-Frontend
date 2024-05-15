@@ -102,7 +102,7 @@ const ToggleButton = styled.label`
   transition: all 0.4s;
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     width: 20px;
     height: 20px;
@@ -112,10 +112,10 @@ const ToggleButton = styled.label`
     left: -2px;
     transition: all 0.4s;
 
-    &:before{
-        background-color: white;
-
+    &:before {
+      background-color: white;
     }
+  }
 `;
 
 const DivSelectCar = styled.div`

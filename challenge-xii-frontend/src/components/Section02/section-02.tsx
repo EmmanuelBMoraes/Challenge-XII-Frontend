@@ -1,7 +1,7 @@
 "use client";
 import styled from "styled-components";
 
-import CardSection01 from "./card-section01";
+import CardSection01 from "../Section01/card-section01";
 import Posts from "./posts";
 
 interface Section02Props {}

@@ -1,6 +1,6 @@
 "use client";
 
-import Attention from "@/components/attention-icon";
+import Attention from "@/components/Section03/attention-icon";
 import Link from "next/link";
 import styled from "styled-components";
 
