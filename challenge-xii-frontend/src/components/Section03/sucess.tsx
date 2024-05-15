@@ -8,14 +8,10 @@ const WelcomeDiv = styled.div`
   justify-content: center;
   flex-direction: column;
   gap: 46px;
-  z-index: 1000000000000000;
   width: 1168px;
   height: 533px;
   background-color: ${theme.colors.component_background};
   color: ${theme.colors.white};
-  position: absolute;
-  top: 1px;
-  left: -76px;
   border-radius: 10px;
 `;
 const Message = styled.h2`
