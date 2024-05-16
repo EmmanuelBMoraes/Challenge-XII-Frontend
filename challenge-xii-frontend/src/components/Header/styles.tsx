@@ -17,9 +17,13 @@ const Link = styled.a`
 
 const TagHeader = styled.header`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
+  @media (max-width: 440px) {
+    justify-content: center;
+  }
 `;
 
 const UserArea = styled.div`

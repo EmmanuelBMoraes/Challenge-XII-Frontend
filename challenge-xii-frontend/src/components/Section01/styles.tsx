@@ -1,11 +1,14 @@
 import { theme } from "@/app/theme";
 import styled from "styled-components";
+import Image from "next/image";
 
 const InteractiveField = styled.div`
   background-color: #2c2c2c;
   padding: 30px 33px;
   border-radius: 4px;
   margin-top: 30px;
+  @media (max-width: 440px) {
+  }
 `;
 
 const FieldSet = styled.div`
@@ -20,6 +23,9 @@ const FieldSet = styled.div`
   }
   > input::placeholder-shown + div {
     display: none;
+  }
+  @media (max-width: 440px) {
+    width: 320px;
   }
 `;
 
@@ -44,6 +50,10 @@ const Input = styled.input`
   }
   &:placeholder-shown + div {
     display: none;
+  }
+
+  @media (max-width: 440px) {
+    width: 300px;
   }
 `;
 
@@ -77,6 +87,9 @@ const ButtonFind = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 440px) {
+    width: 150px;
+  }
 `;
 const Link = styled.a`
   text-decoration: none;
@@ -86,7 +99,7 @@ const Link = styled.a`
 const IconX = styled.div`
   position: absolute;
   top: 21.5px;
-  right: 15px;
+  right: -275px;
   svg {
     fill: ${theme.colors.white};
   }
@@ -98,6 +111,11 @@ const Card = styled.div`
   flex-flow: column;
   align-items: center;
   justify-content: center;
+  @media (max-width: 440px) {
+    & div {
+      width: 360px;
+    }
+  }
 `;
 
 const InfoH2 = styled.h2`
@@ -123,8 +141,27 @@ const Section = styled.div`
   display: flex;
   padding: 74px 89px;
   gap: 42px;
+  @media (max-width: 440px) {
+    flex-direction: column;
+    padding: 0px;
+    flex-wrap: wrap;
+    padding-right: 0;
+  }
 `;
-
+const ImageSection01 = styled(Image)`
+  border-radius: 10px;
+  @media (max-width: 440px) {
+    width: 360px;
+    height: 360px;
+  }
+`;
+const DivImage = styled.div`
+  @media (max-width: 440px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
 export {
   IconX,
   Link,
@@ -141,4 +178,6 @@ export {
   MediumItalic,
   Ride,
   Section,
+  ImageSection01,
+  DivImage,
 };
