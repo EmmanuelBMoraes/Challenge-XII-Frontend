@@ -19,6 +19,7 @@ const Section = styled.div`
   border-radius: 10px;
   margin-bottom: 85px;
   position: relative;
+  width: 1324px;
 `;
 
 const TopSection = styled.div`
@@ -48,7 +49,7 @@ const DivForm = styled.div`
 `;
 
 const InputName = styled.input`
-  width: 544px;
+  width: 622px;
   height: 60px;
   padding: 12px 17px;
   margin-top: 24px;
@@ -81,7 +82,6 @@ const Input = styled.input`
 const DivName = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 20px;
 `;
 const DivOwnCar = styled.div`
   display: flex;
