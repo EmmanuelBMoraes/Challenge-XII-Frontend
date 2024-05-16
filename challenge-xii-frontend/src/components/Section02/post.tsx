@@ -17,6 +17,7 @@ const Post = (postRes: Post) => {
         width={307}
         height={214}
         style={{ borderRadius: "4px 4px 0px 0px" }}
+        priority={true}
       />
 
       <DescDiv>

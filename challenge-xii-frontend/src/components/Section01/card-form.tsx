@@ -74,6 +74,7 @@ const CardForm = () => {
         <FieldSet>
           <Legend>Your pick up</Legend>
           <Input
+            name="current location"
             type="text"
             placeholder="Current location"
             value={location}
@@ -87,6 +88,7 @@ const CardForm = () => {
         <FieldSet>
           <Legend>Your pick up</Legend>
           <Input
+            name="destination"
             type="text"
             placeholder="Your destination"
             value={destination}

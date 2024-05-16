@@ -170,6 +170,7 @@ export default function Section03() {
               <DivName>
                 <div>
                   <InputName
+                    name="first name"
                     placeholder="First Name"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
@@ -180,6 +181,7 @@ export default function Section03() {
                 </div>
                 <div>
                   <InputName
+                    name="last name"
                     placeholder="Last Name"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
@@ -191,9 +193,11 @@ export default function Section03() {
               </DivName>
               <DivInputs>
                 <Input
+                  name="email"
                   placeholder="E-mail Adress"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="on"
                 />
                 {errorMessage.includes("email") && (
                   <ErrorForm message="Invalid e-mail" />
@@ -219,11 +223,12 @@ export default function Section03() {
               {errorMessage.includes("city") && (
                 <ErrorForm message="Invalid city" />
               )}
-              <Input placeholder="Referal Code" />
+              <Input name="referal code" placeholder="Referal Code" />
               <DivOwnCar>
                 <DescriptionPS3>I drive my own car</DescriptionPS3>
                 <div>
                   <InputChkBox
+                    name="own car"
                     type="checkbox"
                     checked={ownCar}
                     onChange={(e) => setOwnCar(e.target.checked)}
