@@ -1,6 +1,11 @@
 import { theme } from "@/app/theme";
 import Image from "next/image";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`;
 
 const WelcomeDiv = styled.div`
   display: flex;
@@ -13,6 +18,7 @@ const WelcomeDiv = styled.div`
   background-color: ${theme.colors.component_background};
   color: ${theme.colors.white};
   border-radius: 10px;
+  animation: ${fadeIn} 2s;
 `;
 const Message = styled.h2`
   font-size: 45px;

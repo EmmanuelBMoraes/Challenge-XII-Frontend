@@ -148,7 +148,6 @@ export default function Section03() {
       const axiosError = error as AxiosError;
       const message: string = axiosError.request.response;
       setErrorMessage(message);
-      setSucsses(true);
     }
   };
   return (
