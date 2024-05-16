@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Card, Title, Description, LearM, DescDiv } from "./styles";
 
 interface Post {
+  id: string;
   title: string;
   imageUrl: string;
   description: string;

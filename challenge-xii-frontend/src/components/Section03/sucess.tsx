@@ -4,6 +4,10 @@ import styled, { keyframes } from "styled-components";
 
 const fadeIn = keyframes`
   0% { opacity: 0; }
+  20% {opacity: 0.2}
+  40% {opacity: 0.4}
+  60%{opacity: 0.6}
+  80%{opacity: 0.8}
   100% { opacity: 1; }
 `;
 
@@ -18,7 +22,7 @@ const WelcomeDiv = styled.div`
   background-color: ${theme.colors.component_background};
   color: ${theme.colors.white};
   border-radius: 10px;
-  animation: ${fadeIn} 2s;
+  animation: ${fadeIn} 1.4s;
 `;
 const Message = styled.h2`
   font-size: 45px;

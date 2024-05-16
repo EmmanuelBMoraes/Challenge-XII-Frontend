@@ -66,7 +66,7 @@ export default function Footer() {
         <LogoIcon />
         <Address>MyRide Inc., 2nd Floor, New York, NY 10016</Address>
         <DivSocialIcons>
-          <SocialIcons></SocialIcons>
+          {SocialIcons()[0]} {SocialIcons()[1]} {SocialIcons()[2]}
         </DivSocialIcons>
       </DivSocialMedia>
       <DivLinksWrapper>

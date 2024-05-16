@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Postss from "./post";
 
 interface Post {
+  id: string;
   title: string;
   imageUrl: string;
   description: string;
@@ -22,6 +23,6 @@ export default function Posts() {
   }, []);
 
   return posts.map((post: Post) => {
-    return <Postss {...post} />;
+    return <Postss {...post} key={post.id} />;
   });
 }
