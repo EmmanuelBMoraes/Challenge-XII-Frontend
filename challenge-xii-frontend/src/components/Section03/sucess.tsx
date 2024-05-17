@@ -23,9 +23,16 @@ const WelcomeDiv = styled.div`
   color: ${theme.colors.white};
   border-radius: 10px;
   animation: ${fadeIn} 1.4s;
+  @media (max-width: 440px) {
+    width: 240px;
+    height: 400px;
+  }
 `;
 const Message = styled.h2`
   font-size: 45px;
+  @media (max-width: 440px) {
+    text-align: center;
+  }
 `;
 export default function Sucssess() {
   return (

@@ -20,6 +20,9 @@ const Section = styled.div`
   margin-bottom: 85px;
   position: relative;
   width: 1324px;
+  @media (max-width: 440px) {
+    width: 300px;
+  }
 `;
 
 const TopSection = styled.div`
@@ -27,25 +30,44 @@ const TopSection = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 16px;
+  @media (max-width: 440px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 200px;
+  }
 `;
 
 const DescriptionH2 = styled.h2`
   color: ${theme.colors.golden};
   font-size: 27px;
+  @media (max-width: 440px) {
+    width: 200px;
+  }
 `;
 const DescriptionP = styled.p`
   color: ${theme.colors.white};
   font-size: 16px;
   margin-top: 6px;
+  @media (max-width: 440px) {
+    width: 200px;
+  }
 `;
 const MidSection = styled.div`
   gap: 6px;
+  @media (max-width: 440px) {
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+  }
 `;
 
 const DivForm = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  @media (max-width: 440px) {
+    width: 240px;
+  }
 `;
 
 const InputName = styled.input`
@@ -62,6 +84,9 @@ const InputName = styled.input`
   &:focus {
     border-color: ${theme.colors.golden};
   }
+  @media (max-width: 440px) {
+    width: 240px;
+  }
 `;
 
 const Input = styled.input`
@@ -77,11 +102,22 @@ const Input = styled.input`
   &:focus {
     border-color: ${theme.colors.golden};
   }
+  @media (max-width: 440px) {
+    width: 240px;
+  }
 `;
 
 const DivName = styled.div`
   display: flex;
   justify-content: space-between;
+  @media (max-width: 440px) {
+    & > div {
+      width: 100px;
+    }
+    width: 240px;
+    justify-content: flex-end;
+    flex-direction: column;
+  }
 `;
 const DivOwnCar = styled.div`
   display: flex;
@@ -199,6 +235,9 @@ const DivInputs = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  @media (max-width: 440px) {
+    width: 240px;
+  }
 `;
 
 export {

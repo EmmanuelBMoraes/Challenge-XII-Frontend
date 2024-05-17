@@ -56,6 +56,9 @@ const H2 = styled.h2`
 
 const SectionPosts = styled.div`
   display: flex;
+  @media (max-width: 440px) {
+    flex-direction: column;
+  }
 `;
 export {
   Card,
