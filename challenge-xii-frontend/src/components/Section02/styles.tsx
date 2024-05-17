@@ -56,6 +56,11 @@ const H2 = styled.h2`
 
 const SectionPosts = styled.div`
   display: flex;
+  @media (max-width: 1280px) {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
   @media (max-width: 440px) {
     flex-direction: column;
   }

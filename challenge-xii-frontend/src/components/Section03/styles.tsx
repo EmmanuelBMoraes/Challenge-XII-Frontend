@@ -21,6 +21,10 @@ const Section = styled.div`
   margin-bottom: 85px;
   position: relative;
   width: 1324px;
+  @media (max-width: 1330px) and (min-width: 441px) {
+    align-items: center;
+    flex-wrap: wrap;
+  }
   @media (max-width: 440px) {
     width: 300px;
   }
@@ -31,6 +35,12 @@ const TopSection = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 16px;
+  @media (max-width: 1330px) and (min-width: 441px) {
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 400px;
+  }
   @media (max-width: 440px) {
     flex-direction: column;
     justify-content: flex-start;
@@ -66,6 +76,12 @@ const DivForm = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  @media (max-width: 1330px) and (min-width: 661px) {
+    width: 640px;
+  }
+  @media (max-width: 660px) and (min-width: 441px) {
+    width: 400px;
+  }
   @media (max-width: 440px) {
     width: 240px;
   }
@@ -84,6 +100,12 @@ const InputName = styled.input`
   caret-color: ${theme.colors.golden};
   &:focus {
     border-color: ${theme.colors.golden};
+  }
+  @media (max-width: 1330px) and (min-width: 661px) {
+    width: 640px;
+  }
+  @media (max-width: 660px) and (min-width: 441px) {
+    width: 400px;
   }
   @media (max-width: 440px) {
     width: 240px;
@@ -111,6 +133,11 @@ const Input = styled.input`
 const DivName = styled.div`
   display: flex;
   justify-content: space-between;
+  @media (max-width: 1330px) and (min-width: 441px) {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
   @media (max-width: 440px) {
     & > div {
       width: 100px;
@@ -252,6 +279,12 @@ const DivInputs = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  @media (max-width: 1330px) and (min-width: 661px) {
+    width: 640px;
+  }
+  @media (max-width: 660px) and (min-width: 441px) {
+    width: 400px;
+  }
   @media (max-width: 440px) {
     width: 240px;
   }

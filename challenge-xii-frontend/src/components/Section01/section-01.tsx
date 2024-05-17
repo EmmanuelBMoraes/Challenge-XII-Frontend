@@ -1,7 +1,6 @@
 "use client";
 import CardSection01 from "./card-section01";
 import { DivImage, ImageSection01, Section } from "./styles";
-import styled from "styled-components";
 
 interface Section01Props {}
 

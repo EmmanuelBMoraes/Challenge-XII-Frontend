@@ -24,6 +24,9 @@ const FieldSet = styled.div`
   > input::placeholder-shown + div {
     display: none;
   }
+  @media (max-width: 620px) {
+    width: 360px;
+  }
   @media (max-width: 440px) {
     width: 320px;
   }
@@ -52,6 +55,9 @@ const Input = styled.input`
     display: none;
   }
 
+  @media (max-width: 620px) {
+    width: 360px;
+  }
   @media (max-width: 440px) {
     width: 300px;
   }
@@ -87,6 +93,9 @@ const ButtonFind = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 620px) {
+    width: 190px;
+  }
   @media (max-width: 440px) {
     width: 150px;
   }
@@ -98,12 +107,16 @@ const Link = styled.a`
 
 const IconX = styled.div`
   position: absolute;
+  top: 21.5px;
+  right: 17px;
+  @media (max-width: 620px) {
+    top: 21.5px;
+    right: -330px;
+  }
   @media (max-width: 440px) {
     top: 21.5px;
     right: -275px;
   }
-  top: 21.5px;
-  right: 17px;
 
   svg {
     fill: ${theme.colors.white};
@@ -116,6 +129,11 @@ const Card = styled.div`
   flex-flow: column;
   align-items: center;
   justify-content: center;
+  @media (max-width: 620px) {
+    & div {
+      width: 420px;
+    }
+  }
   @media (max-width: 440px) {
     & div {
       width: 360px;
@@ -146,6 +164,11 @@ const Section = styled.div`
   display: flex;
   padding: 74px 89px;
   gap: 42px;
+  @media (max-width: 1280px) {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
   @media (max-width: 440px) {
     flex-direction: column;
     padding: 0px;
@@ -155,6 +178,10 @@ const Section = styled.div`
 `;
 const ImageSection01 = styled(Image)`
   border-radius: 10px;
+  @media (max-width: 620px) {
+    width: 430px;
+    height: 430px;
+  }
   @media (max-width: 440px) {
     width: 360px;
     height: 360px;

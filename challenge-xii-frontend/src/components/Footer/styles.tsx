@@ -8,6 +8,7 @@ const WrapperFooter = styled.footer`
   align-items: center;
   padding: 40px 80px;
   gap: 80px;
+  flex-wrap: wrap;
   @media (max-width: 440px) {
     flex-direction: column;
     justify-content: center;
@@ -64,6 +65,7 @@ const ListItem = styled.li`
 
 const DivLinksWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   @media (max-width: 440px) {
     flex-direction: column;
   }

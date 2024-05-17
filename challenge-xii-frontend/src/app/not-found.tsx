@@ -12,6 +12,7 @@ const Div404 = styled.div`
   color: white;
   margin: auto;
   padding-bottom: 250px;
+  flex-wrap: wrap;
   @media (max-width: 1440px) {
     padding-top: 400px;
     padding-bottom: 400px;
