@@ -16,18 +16,73 @@ import {
   DivInputs,
 } from "./styles";
 import CarTypes from "./carTypes";
-import { useState, FormEvent, useEffect, useContext } from "react";
+import { useState, FormEvent, useEffect, useContext, useReducer } from "react";
 import axios, { AxiosError } from "axios";
 import { theme } from "@/app/theme";
 import ErrorForm from "./error-form";
 import SelectInput, { Option } from "./select";
 import Sucssess from "./sucess";
 import { AppContext } from "./section-03";
-type MessageProp = {
-  message: string;
+
+type StateDriver = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  ownCar: boolean;
+  carType: string;
+};
+type ActionDriver =
+  | {
+      type: "setFirstName";
+      firstName: string;
+    }
+  | { type: "setLastName"; lastName: string }
+  | { type: "setEmail"; email: string }
+  | { type: "setOwnCar"; ownCar: boolean }
+  | { type: "setCarType"; carType: string };
+const reducer = (state: StateDriver, action: ActionDriver) => {
+  switch (action.type) {
+    case "setFirstName":
+      return {
+        ...state,
+        firstName: action.firstName,
+      };
+    case "setLastName":
+      return {
+        ...state,
+        lastName: action.lastName,
+      };
+
+    case "setEmail":
+      return {
+        ...state,
+        email: action.email,
+      };
+    case "setOwnCar":
+      return {
+        ...state,
+        ownCar: action.ownCar,
+      };
+    case "setCarType":
+      return {
+        ...state,
+        carType: action.carType,
+      };
+    default:
+      break;
+  }
+  return state;
 };
 
 export default function FormS3() {
+  const [state, dispatch] = useReducer(reducer, {
+    firstName: "",
+    lastName: "",
+    email: "",
+    ownCar: false,
+    carType: "",
+  });
+
   const [optionsCountry, setOptionsCountry] = useState<Option[]>([]);
   const [optionsCity, setOptionsCity] = useState<Option[]>([]);
   const [selected, setSelected] = useState<string[]>([
@@ -36,11 +91,6 @@ export default function FormS3() {
     "white",
     "white",
   ]);
-  const [carType, setCarType] = useState<string>("");
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [ownCar, setOwnCar] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [country, setCountry] = useState<string>("");
   const [city, setCity] = useState<string>("");
@@ -60,7 +110,7 @@ export default function FormS3() {
 
         setOptionsCountry(optionsDataCountry);
       } catch (error) {
-        console.log(error);
+        console.log("Invalid request");
       }
     };
     fetchData();
@@ -70,6 +120,7 @@ export default function FormS3() {
     if (country != "") {
       const fetchData = async () => {
         try {
+          setOptionsCity([{ id: "loading", displayName: "Loading..." }]);
           const resCity = await axios.post(
             "https://countriesnow.space/api/v0.1/countries/cities",
             {
@@ -85,7 +136,8 @@ export default function FormS3() {
 
           setOptionsCity(optionsDataCity);
         } catch (error) {
-          console.log(error);
+          setOptionsCity([{ id: "error", displayName: "Country unavailable" }]);
+          console.log("Error on fetching data");
         }
       };
 
@@ -103,7 +155,7 @@ export default function FormS3() {
     setCity(optionId);
   };
   const handleClick = (car: string) => {
-    setCarType(car);
+    dispatch({ type: "setCarType", carType: car });
     const selectedCar: string[] = ["white", "white", "white", "white"];
     switch (car) {
       case "Sedan":
@@ -129,18 +181,17 @@ export default function FormS3() {
     e.preventDefault();
     try {
       const postDriver = await axios.post("http://localhost:3001/drivers", {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
+        firstName: state.firstName,
+        lastName: state.lastName,
+        email: state.email,
         country: country,
         city: city,
-        ownCar: ownCar,
-        carType: carType,
+        ownCar: state.ownCar,
+        carType: state.carType,
       });
       formSubmit?.setFormSubmited(true);
       setErrorMessage("");
     } catch (error) {
-      console.log(error);
       const axiosError = error as AxiosError;
       const message: string = axiosError.request.response;
       setErrorMessage(message);
@@ -155,8 +206,10 @@ export default function FormS3() {
             <div>
               <InputName
                 placeholder="First Name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                value={state.firstName}
+                onChange={(e) =>
+                  dispatch({ type: "setFirstName", firstName: e.target.value })
+                }
               />
               {errorMessage.includes("firstName") && (
                 <ErrorForm message="Invalid First Name" />
@@ -165,8 +218,10 @@ export default function FormS3() {
             <div>
               <InputName
                 placeholder="Last Name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                value={state.lastName}
+                onChange={(e) =>
+                  dispatch({ type: "setLastName", lastName: e.target.value })
+                }
               />
               {errorMessage.includes("lastName") && (
                 <ErrorForm message="Invalid Last Name" />
@@ -176,8 +231,10 @@ export default function FormS3() {
           <DivInputs>
             <Input
               placeholder="E-mail Adress"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={state.email}
+              onChange={(e) =>
+                dispatch({ type: "setEmail", email: e.target.value })
+              }
             />
             {errorMessage.includes("email") && (
               <ErrorForm message="Invalid e-mail" />
@@ -210,8 +267,10 @@ export default function FormS3() {
               <InputChkBox
                 id="own car"
                 type="checkbox"
-                checked={ownCar}
-                onChange={(e) => setOwnCar(e.target.checked)}
+                checked={state.ownCar}
+                onChange={(e) =>
+                  dispatch({ type: "setOwnCar", ownCar: e.target.checked })
+                }
               />
               <ToggleButton></ToggleButton>
             </div>
