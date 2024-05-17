@@ -1,3 +1,4 @@
+import { keyframes } from "styled-components";
 import styled from "styled-components";
 import { theme } from "@/app/theme";
 
@@ -256,6 +257,58 @@ const DivInputs = styled.div`
   }
 `;
 
+const fadeIn = keyframes`
+  0% { opacity: 0; }
+  20% {opacity: 0.2}
+  40% {opacity: 0.4}
+  60%{opacity: 0.6}
+  80%{opacity: 0.8}
+  100% { opacity: 1; }
+`;
+
+const WelcomeDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 46px;
+  width: 1168px;
+  height: 533px;
+  background-color: ${theme.colors.component_background};
+  color: ${theme.colors.white};
+  border-radius: 10px;
+  animation: ${fadeIn} 1.4s;
+  @media (max-width: 440px) {
+    width: 240px;
+    height: 400px;
+  }
+`;
+const Message = styled.h2`
+  font-size: 45px;
+  @media (max-width: 440px) {
+    text-align: center;
+  }
+`;
+
+const InputOption = styled.select`
+  height: 60px;
+  padding: 12px 17px;
+  margin-top: 24px;
+  color: ${theme.colors.white};
+  background-color: transparent;
+  outline: none;
+  border: 1px solid ${theme.colors.white};
+  border-radius: 4px;
+  caret-color: ${theme.colors.golden};
+  &:focus {
+    border-color: ${theme.colors.golden};
+  }
+`;
+
+const Options = styled.option`
+  color: ${theme.colors.post_background};
+`;
+
 export {
   ErrorDiv,
   MessageError,
@@ -264,6 +317,10 @@ export {
   DescriptionH2,
   DescriptionP,
   MidSection,
+  WelcomeDiv,
+  Message,
+  InputOption,
+  Options,
 };
 
 export {

@@ -40,6 +40,7 @@ type ActionDriver =
   | { type: "setEmail"; email: string }
   | { type: "setOwnCar"; ownCar: boolean }
   | { type: "setCarType"; carType: string };
+
 const reducer = (state: StateDriver, action: ActionDriver) => {
   switch (action.type) {
     case "setFirstName":

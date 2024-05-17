@@ -98,8 +98,13 @@ const Link = styled.a`
 
 const IconX = styled.div`
   position: absolute;
+  @media (max-width: 440px) {
+    top: 21.5px;
+    right: -275px;
+  }
   top: 21.5px;
-  right: -275px;
+  right: 17px;
+
   svg {
     fill: ${theme.colors.white};
   }
