@@ -190,6 +190,9 @@ const ToggleButton = styled.label`
 
 const DivSelectCar = styled.div`
   padding-top: 24px;
+  @media (max-width: 440px) {
+    width: 240px;
+  }
 `;
 
 const SelectCarTitle = styled.p`
@@ -202,6 +205,9 @@ const DivCarTypes = styled.div`
   display: flex;
   gap: 12px;
   margin-top: 16px;
+  @media (max-width: 440px) {
+    width: 240px;
+  }
 `;
 
 const CarCard = styled.div`
@@ -216,6 +222,13 @@ const CarCard = styled.div`
   gap: 11px;
   color: ${theme.colors.white};
   cursor: pointer;
+  @media (max-width: 440px) {
+    & > p {
+      word-break: break-all;
+    }
+    width: 54px;
+    flex-wrap: wrap;
+  }
 `;
 
 const SubmitButton = styled.button`
@@ -229,6 +242,9 @@ const SubmitButton = styled.button`
   margin-top: 24px;
   cursor: pointer;
   font-weight: 500;
+  @media (max-width: 440px) {
+    width: 240px;
+  }
 `;
 
 const DivInputs = styled.div`

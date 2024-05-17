@@ -16,6 +16,11 @@ const Div404 = styled.div`
     padding-top: 400px;
     padding-bottom: 400px;
   }
+  @media (max-width: 440px) {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    text-align: center;
+  }
 `;
 
 export default function NotFound() {
