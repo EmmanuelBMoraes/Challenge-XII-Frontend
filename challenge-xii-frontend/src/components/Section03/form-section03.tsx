@@ -16,12 +16,13 @@ import {
   DivInputs,
 } from "./styles";
 import CarTypes from "./carTypes";
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent, useEffect, useContext } from "react";
 import axios, { AxiosError } from "axios";
 import { theme } from "@/app/theme";
 import ErrorForm from "./error-form";
 import SelectInput, { Option } from "./select";
 import Sucssess from "./sucess";
+import { AppContext } from "./section-03";
 type MessageProp = {
   message: string;
 };
@@ -44,7 +45,8 @@ export default function FormS3() {
   const [country, setCountry] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [firstLoad, setFirstLoad] = useState<boolean>(true);
-  const [sucess, setSucsses] = useState<boolean>(false);
+  const formSubmit = useContext(AppContext);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -135,20 +137,19 @@ export default function FormS3() {
         ownCar: ownCar,
         carType: carType,
       });
-      setSucsses(true);
+      formSubmit?.setFormSubmited(true);
       setErrorMessage("");
     } catch (error) {
       console.log(error);
       const axiosError = error as AxiosError;
       const message: string = axiosError.request.response;
       setErrorMessage(message);
-      setSucsses(true);
     }
   };
   return (
     <form onSubmit={handleSubmit}>
-      {sucess && <Sucssess />}
-      {!sucess && (
+      {formSubmit?.formSubmited && <Sucssess />}
+      {!formSubmit?.formSubmited && (
         <DivForm>
           <DivName>
             <div>
