@@ -16,7 +16,14 @@ import {
   DivInputs,
 } from "./styles";
 import CarTypes from "./carTypes";
-import { useState, FormEvent, useEffect, useContext, useReducer } from "react";
+import {
+  useState,
+  FormEvent,
+  useEffect,
+  useContext,
+  useReducer,
+  act,
+} from "react";
 import axios, { AxiosError } from "axios";
 import { theme } from "@/app/theme";
 import ErrorForm from "./error-form";
@@ -28,8 +35,11 @@ type StateDriver = {
   firstName: string;
   lastName: string;
   email: string;
+  country: string;
+  city: string;
   ownCar: boolean;
   carType: string;
+  referalCode?: string;
 };
 type ActionDriver =
   | {
@@ -38,8 +48,11 @@ type ActionDriver =
     }
   | { type: "setLastName"; lastName: string }
   | { type: "setEmail"; email: string }
+  | { type: "setCountry"; country: string }
+  | { type: "setCity"; city: string }
   | { type: "setOwnCar"; ownCar: boolean }
-  | { type: "setCarType"; carType: string };
+  | { type: "setCarType"; carType: string }
+  | { type: "setReferalCode"; referalCode: string };
 
 const reducer = (state: StateDriver, action: ActionDriver) => {
   switch (action.type) {
@@ -59,6 +72,17 @@ const reducer = (state: StateDriver, action: ActionDriver) => {
         ...state,
         email: action.email,
       };
+
+    case "setCountry":
+      return {
+        ...state,
+        country: action.country,
+      };
+    case "setCity":
+      return {
+        ...state,
+        city: action.city,
+      };
     case "setOwnCar":
       return {
         ...state,
@@ -68,6 +92,11 @@ const reducer = (state: StateDriver, action: ActionDriver) => {
       return {
         ...state,
         carType: action.carType,
+      };
+    case "setReferalCode":
+      return {
+        ...state,
+        referalCode: action.referalCode,
       };
     default:
       break;
@@ -80,8 +109,11 @@ export default function FormS3() {
     firstName: "",
     lastName: "",
     email: "",
+    country: "",
+    city: "",
     ownCar: false,
     carType: "",
+    referalCode: "",
   });
 
   const [optionsCountry, setOptionsCountry] = useState<Option[]>([]);
@@ -93,8 +125,6 @@ export default function FormS3() {
     "white",
   ]);
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [country, setCountry] = useState<string>("");
-  const [city, setCity] = useState<string>("");
   const [firstLoad, setFirstLoad] = useState<boolean>(true);
   const formSubmit = useContext(AppContext);
 
@@ -118,14 +148,15 @@ export default function FormS3() {
   }, []);
 
   useEffect(() => {
-    if (country != "") {
+    if (state.country != "") {
       const fetchData = async () => {
         try {
+          dispatch({ type: "setCity", city: "" });
           setOptionsCity([{ id: "loading", displayName: "Loading..." }]);
           const resCity = await axios.post(
             "https://countriesnow.space/api/v0.1/countries/cities",
             {
-              country: country,
+              country: state.country,
             }
           );
           const optionsDataCity = await resCity.data.data.map(
@@ -134,26 +165,29 @@ export default function FormS3() {
               displayName: city,
             })
           );
-
+          dispatch({ type: "setCity", city: resCity.data.data[0] });
           setOptionsCity(optionsDataCity);
         } catch (error) {
-          setOptionsCity([{ id: "error", displayName: "Country unavailable" }]);
+          setOptionsCity([
+            { id: "error#1", displayName: "Country unavailable" },
+          ]);
           console.log("Error on fetching data");
         }
       };
 
       fetchData();
     }
-  }, [country]);
+    setOptionsCity([]);
+  }, [state.country]);
 
   const handleSelectChangeCountry = (optionId: string) => {
     if (firstLoad) {
       setFirstLoad(false);
     }
-    setCountry(optionId);
+    dispatch({ type: "setCountry", country: optionId });
   };
   const handleSelectChangeCity = (optionId: string) => {
-    setCity(optionId);
+    dispatch({ type: "setCity", city: optionId });
   };
   const handleClick = (car: string) => {
     dispatch({ type: "setCarType", carType: car });
@@ -181,18 +215,23 @@ export default function FormS3() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const postDriver = await axios.post("http://localhost:3001/drivers", {
+      const postDriver: StateDriver = {
         firstName: state.firstName,
         lastName: state.lastName,
         email: state.email,
-        country: country,
-        city: city,
+        country: state.country,
+        city: state.city,
         ownCar: state.ownCar,
         carType: state.carType,
-      });
+      };
+      if (state.referalCode != "") {
+        postDriver.referalCode = state.referalCode;
+      }
+      await axios.post("http://localhost:3001/drivers", postDriver);
       formSubmit?.setFormSubmited(true);
       setErrorMessage("");
     } catch (error) {
+      console.log("s " + state.city + " <-cidade");
       const axiosError = error as AxiosError;
       const message: string = axiosError.request.response;
       setErrorMessage(message);
@@ -261,7 +300,16 @@ export default function FormS3() {
           {errorMessage.includes("city") && (
             <ErrorForm message="Invalid city" />
           )}
-          <Input placeholder="Referal Code" />
+          <Input
+            placeholder="Referal Code"
+            value={state.referalCode}
+            onChange={(e) =>
+              dispatch({ type: "setReferalCode", referalCode: e.target.value })
+            }
+          />
+          {errorMessage.includes("referalCode") && (
+            <ErrorForm message="Invalid Referal Code" />
+          )}
           <DivOwnCar>
             <DescriptionPS3>I drive my own car</DescriptionPS3>
             <div>
