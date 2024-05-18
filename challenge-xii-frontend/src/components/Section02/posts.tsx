@@ -15,8 +15,12 @@ export default function Posts() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await axios.get("http://localhost:3001/posts");
-        setPosts(res.data);
+        if (process.env.NEXT_PUBLIC_API_URL_POSTS) {
+          const res = await axios.get(process.env.NEXT_PUBLIC_API_URL_POSTS);
+          setPosts(res.data);
+        } else {
+          console.log("Error on api url");
+        }
       } catch (error) {}
     };
     fetchPosts();

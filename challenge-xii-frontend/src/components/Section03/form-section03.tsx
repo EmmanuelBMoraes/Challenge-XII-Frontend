@@ -227,7 +227,11 @@ export default function FormS3() {
       if (state.referalCode != "") {
         postDriver.referalCode = state.referalCode;
       }
-      await axios.post("http://localhost:3001/drivers", postDriver);
+      if (process.env.NEXT_PUBLIC_API_URL) {
+        await axios.post(process.env.NEXT_PUBLIC_API_URL, postDriver);
+      } else {
+        console.log("Error on api url");
+      }
       formSubmit?.setFormSubmited(true);
       setErrorMessage("");
     } catch (error) {
