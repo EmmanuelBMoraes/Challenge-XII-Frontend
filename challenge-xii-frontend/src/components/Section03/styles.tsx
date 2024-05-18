@@ -21,9 +21,13 @@ const Section = styled.div`
   margin-bottom: 85px;
   position: relative;
   width: 1324px;
-  @media (max-width: 1330px) and (min-width: 441px) {
+  @media (max-width: 1330px) and (min-width: 661px) {
+    width: 700px;
     align-items: center;
-    flex-wrap: wrap;
+  }
+  @media (max-width: 660px) and (min-width: 441px) {
+    align-items: center;
+    width: 450px;
   }
   @media (max-width: 440px) {
     width: 300px;
@@ -311,6 +315,14 @@ const WelcomeDiv = styled.div`
   color: ${theme.colors.white};
   border-radius: 10px;
   animation: ${fadeIn} 1.4s;
+  @media (max-width: 1330px) and (min-width: 661px) {
+    width: 640px;
+    height: 800px;
+  }
+  @media (max-width: 660px) and (min-width: 441px) {
+    height: 500px;
+    width: 300px;
+  }
   @media (max-width: 440px) {
     width: 240px;
     height: 400px;
@@ -318,6 +330,9 @@ const WelcomeDiv = styled.div`
 `;
 const Message = styled.h2`
   font-size: 45px;
+  @media (max-width: 660px) and (min-width: 441px) {
+    text-align: center;
+  }
   @media (max-width: 440px) {
     text-align: center;
   }

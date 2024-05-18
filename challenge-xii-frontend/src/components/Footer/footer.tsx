@@ -49,13 +49,13 @@ export default function Footer() {
           <List>
             <ListTitle>Company</ListTitle>
             <ListItem>
-              <LinkFooter href="not-found"> About Us</LinkFooter>
+              <LinkFooter href="not-found">About Us</LinkFooter>
             </ListItem>
             <ListItem>
-              <LinkFooter href="not-found"> News</LinkFooter>
+              <LinkFooter href="not-found">News</LinkFooter>
             </ListItem>
             <ListItem>
-              <LinkFooter href="not-found"> Careers</LinkFooter>
+              <LinkFooter href="not-found">Careers</LinkFooter>
             </ListItem>
             <ListItem>
               <LinkFooter href="not-found">How we work</LinkFooter>

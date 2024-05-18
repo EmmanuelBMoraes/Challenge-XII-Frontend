@@ -5,7 +5,7 @@ import { DivImage, ImageSection01, Section } from "./styles";
 interface Section01Props {}
 
 const imgUrl =
-  "https://" + process.env.NEXT_PUBLIC_BUCKET_URL + "/cards/Hero-image.png";
+  "https://challenge-xii-bucket-compass-uol-emma.s3.amazonaws.com/cards/Hero-image.png";
 
 export default function Section01(props: Section01Props) {
   return (

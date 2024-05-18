@@ -7,7 +7,7 @@ import Image from "next/image";
 import { TagHeader, UserArea, Separator } from "./styles";
 
 const userIco =
-  "https://" + process.env.NEXT_PUBLIC_BUCKET_URL + "/cards/user-avatar.png";
+  "https://challenge-xii-bucket-compass-uol-emma.s3.amazonaws.com/cards/user-avatar.png";
 
 interface HeaderProps {}
 

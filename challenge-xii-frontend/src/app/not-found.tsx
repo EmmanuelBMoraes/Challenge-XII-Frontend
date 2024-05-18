@@ -27,7 +27,7 @@ const Div404 = styled.div`
 export default function NotFound() {
   return (
     <Div404>
-      <h1>Sorry, we couldn't find nothing here :/</h1>
+      <h1>Sorry, we couldn&apos;t find nothing here :/</h1>
       <Attention />
       <h2>
         <Link href="/" style={{ textDecoration: "none", color: "white" }}>

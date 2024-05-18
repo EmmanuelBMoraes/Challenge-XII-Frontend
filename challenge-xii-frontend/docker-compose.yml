@@ -1,0 +1,11 @@
+services:
+  nginx-react:
+    image: reactapp:latest
+    container_name: reactapp
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=.env.local
