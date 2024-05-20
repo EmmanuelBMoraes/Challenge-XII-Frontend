@@ -6,7 +6,7 @@ interface Section02Props {}
 
 export default function Section02(props: Section02Props) {
   return (
-    <Section>
+    <Section id="Section02">
       <Division>
         <Paragraph>WHY SHOULD YOU RIDE WITH US?</Paragraph>
         <H2>Best in class rides</H2>

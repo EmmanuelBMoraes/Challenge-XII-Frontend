@@ -5,8 +5,7 @@
 <div align="left">
 <img src="https://img.shields.io/badge/Next-gray?logo=next.js" />
 <img src="https://img.shields.io/badge/React-black?logo=react" />
-<img src="https://img.shields.io/badge/Styled%20Components-pink?logo=styled-components&logoColor=black&color=%23DB7093
-" />
+<img src="https://img.shields.io/badge/Styled%20Components-pink?logo=styled-components&logoColor=black&color=%23DB7093"/>
 <img src="https://img.shields.io/badge/Axios-purple?logo=axios&color=%235A29E4" />
 <img src="https://img.shields.io/badge/Eslint-purple?logo=eslint&color=%234B32C3"/>
 <img src="https://img.shields.io/badge/Docker-blue?logo=docker&logoColor=white&color=%232496ED"/>
@@ -64,4 +63,10 @@ If you don't want to run it on background just remove the "-d"
 
 ```bash
 docker-compose up -d
+```
+
+## Now go to your browser e acess:
+
+```bash
+localhost
 ```
