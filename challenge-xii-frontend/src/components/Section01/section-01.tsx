@@ -9,7 +9,7 @@ const imgUrl =
 
 export default function Section01(props: Section01Props) {
   return (
-    <Section>
+    <Section id="Section01">
       <DivImage>
         <ImageSection01
           src={imgUrl}

@@ -20,7 +20,7 @@ export default function Section03() {
   const [formSubmited, setFormSubmited] = useState<boolean>(false);
 
   return (
-    <Section>
+    <Section id="Section03">
       <AppContext.Provider value={{ formSubmited, setFormSubmited }}>
         {formSubmited && <Sucssess />}
         {!formSubmited && (

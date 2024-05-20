@@ -9,13 +9,13 @@ export default function HeaderMenu(props: HeaderMenuProps) {
         <Link href="">Home</Link>
       </ListItem>
       <ListItem>
-        <Link href="">Getting a Taxi</Link>
+        <Link href="#Section01">Getting a Taxi</Link>
       </ListItem>
       <ListItem>
-        <Link href="">Mobile App</Link>
+        <Link href="#Section02">Mobile App</Link>
       </ListItem>
       <ListItem>
-        <Link href="">Contact Us</Link>
+        <Link href="#Section03">Contact Us</Link>
       </ListItem>
     </List>
   );

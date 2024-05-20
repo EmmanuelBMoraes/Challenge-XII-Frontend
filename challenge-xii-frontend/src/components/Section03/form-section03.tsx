@@ -235,7 +235,6 @@ export default function FormS3() {
       formSubmit?.setFormSubmited(true);
       setErrorMessage("");
     } catch (error) {
-      console.log("s " + state.city + " <-cidade");
       const axiosError = error as AxiosError;
       const message: string = axiosError.request.response;
       setErrorMessage(message);
