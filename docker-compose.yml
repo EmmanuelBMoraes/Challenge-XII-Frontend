@@ -8,5 +8,6 @@ services:
     ports:
       - "80:80"
     environment:
+      - NODE_ENV=production
       - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
       - NEXT_PUBLIC_API_URL_POSTS=${NEXT_PUBLIC_API_URL_POSTS}
