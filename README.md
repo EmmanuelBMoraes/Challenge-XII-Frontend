@@ -1,4 +1,7 @@
 
+# Challenge XII Frontend
+
+
 ## Stack
 
 <div align="left">
@@ -20,13 +23,9 @@ Emmanuel Barros Moraes
 
 This is the front-end part of the project "Challenge XII" from Compass UOL Internship. It's the 3rd and last challenge which integrates back-end with front-end as part of the "Full Stack" role. If you want to understand the endpoint, please feel free to read back-end part first.
 
-## First Step - Go to the folder where the project is
 
-```bash
-cd challenge-xii-frontend
-```
+## First Step - Creating your .env.local file inside the sub-directory (./challenge-xii-frontend)<div style="padding-left: 1em;"><img src="https://img.shields.io/badge/Env-blue?logo=.env&logoColor=black&color=%23ECD53F"/></div>
 
-## Second Step - Creating your .env file <div style="padding-left: 1em;"><img src="https://img.shields.io/badge/Env-blue?logo=.env&logoColor=black&color=%23ECD53F"/></div>
 
 This is the endpoint where the "drivers form" is sent, so in order to use this project with the back-end set the url to:
 
@@ -40,7 +39,9 @@ And this is the "posts" endpoint where the cards are retrieved from the back-end
 NEXT_PUBLIC_API_URL_POSTS=http://localhost:3000/posts
 ```
 
-## Third Step - Building your docker compose
+
+## Second Step - Building your docker compose
+
 
 Now, let's build the docker compose
 
@@ -52,7 +53,8 @@ Now, let's build the docker compose
 docker-compose build
 ```
 
-## Fourth Step - Starting the docker container we just built
+
+## Third Step - Starting the docker container we just built
 
 If you don't want to run it on background just remove the "-d"
 

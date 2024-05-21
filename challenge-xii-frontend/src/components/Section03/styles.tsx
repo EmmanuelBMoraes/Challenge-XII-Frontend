@@ -295,12 +295,12 @@ const DivInputs = styled.div`
 `;
 
 const fadeIn = keyframes`
-  0% { opacity: 0; }
+  0% { opacity: 0}
   20% {opacity: 0.2}
   40% {opacity: 0.4}
   60%{opacity: 0.6}
   80%{opacity: 0.8}
-  100% { opacity: 1; }
+  100% { opacity: 1}
 `;
 
 const WelcomeDiv = styled.div`
