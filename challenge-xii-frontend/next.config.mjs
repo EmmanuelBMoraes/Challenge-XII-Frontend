@@ -14,6 +14,10 @@ const nextConfig = {
     unoptimized: true,
   },
   output: "export",
+  env: {
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    NEXT_PUBLIC_API_URL_POSTS: process.env.NEXT_PUBLIC_API_URL_POSTS,
+  },
 };
 
 export default nextConfig;
