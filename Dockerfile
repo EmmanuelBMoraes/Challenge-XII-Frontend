@@ -6,6 +6,8 @@ RUN npm install -g pnpm
 RUN pnpm install
 RUN pnpm build
 
+ENV NODE_ENV=production
+
 FROM nginx
 COPY --from=builder /app/nginx /etc/nginx/conf.d
 EXPOSE 80
